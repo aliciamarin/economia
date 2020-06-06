@@ -1,0 +1,161 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": [
+     "remove-cell"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "%run 'funciones'\n",
+    "from datascience import *\n",
+    "import numpy as np\n",
+    "import plotly.graph_objects as go"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Ejercicios"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Ejercicio 1\n",
+    "Pensemos en el caso del mercado de vestidos de una conocida marca. Cuando el precio de los mismos es de 30 u.m., hay 1.000 personas dispuestas a comprarlos. Si el precio aumenta en 10 u.m., el porcentaje de ventas se reduce un 15%. Si el precio aumenta hasta 50 u.m., las ventas caen a la mitad respecto a las ventas iniciales. Dibujar la función de demanda de este bien."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": [
+     "remove-cell"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "# Rellenar las cantidades y precios marcados con ?\n",
+    "\n",
+    "ej1_precios = [?,?,?]\n",
+    "ej1_cantidades = [?,?,?]\n",
+    "\n",
+    "ej1_tabla = Table().with_columns(\"Precio\", ej1_precios, \"Cantidad\", ej1_cantidades)\n",
+    "ej1_tabla"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": [
+     "remove-cell"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "pintar_funcion_demanda(ej1_tabla.column('Cantidad'), ej1_tabla.column('Precio'))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Ejercicio 2\n",
+    "Analiza y representa gráficamente cómo se desplaza la curva de demanda de café en los siguientes casos: \n",
+    "\n",
+    "a) Se produce un aumento del precio de la leche. \n",
+    "\n",
+    "b) Aumenta el precio del té. \n",
+    "\n",
+    "c) Aparece un equipo ciclista que pone de moda la marca de café X."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "tags": [
+     "remove-cell"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "ej2_precios = [10,12,14,16,18,20]\n",
+    "ej2_funcion = lambda P: 12 - (0.5 * P)\n",
+    "ej2_cantidades = [ej2_funcion(P) for P in ej2_precios]\n",
+    "\n",
+    "ej2_tabla = Table().with_columns(\"Precio\", ej2_precios, \n",
+    "                                 \"Cantidad\", ej2_cantidades)\n",
+    "\n",
+    "pintar_funcion_demanda_otros_factores(ej2_tabla.column('Cantidad'), ej2_tabla.column('Precio'), -20, 20, lambda p, var: 12 + var - (0.5 * p), 15, 25)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Ejercicio 3\n",
+    "Supongamos que la demanda de helados está integrada únicamente por 2 consumidores, María y Marta, y que al precio de 1€ demanda, respectivamente, dos y cuatro unidades a la semana. Si el precio disminuye hasta 0,5€, María demandará 3 unidades y Marta 6 unidades. Representa gráficamente las curvas de demanda individuales y de mercado de los helados."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "scrolled": false,
+    "tags": [
+     "remove-cell"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "# Rellena los ? con los valores correspondientes\n",
+    "precios = [?,?]\n",
+    "maria = [?,?]\n",
+    "marta = [?,?]\n",
+    "mercado = [?,?]\n",
+    "\n",
+    "ejercicio3_tabla = Table().with_columns(\"Precio\", precios, \n",
+    "                                        \"Maria\", maria,\n",
+    "                                        \"Marta\", marta,\n",
+    "                                        \"Mercado\", mercado)\n",
+    "\n",
+    "ejercicio3_tabla\n",
+    "\n",
+    "pintar_funcion_demanda_multiple(\n",
+    "    [[ejercicio3_tabla.column('Maria'), ejercicio3_tabla.column('Precio'), \"María\"], \n",
+    "     [ejercicio3_tabla.column('Marta'), ejercicio3_tabla.column('Precio'), \"Marta\"],\n",
+    "     [ejercicio3_tabla.column('Mercado'), ejercicio3_tabla.column('Precio'), \"Mercado\"]])\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Tags",
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
