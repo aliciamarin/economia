@@ -1,0 +1,7 @@
+jupyter-book>=0.7.0b
+numpy
+matplotlib
+plotly==4.7.1
+pandas>=0.25
+ipywidgets>=7.5
+datascience
